@@ -1,2 +1,2 @@
 # RichTextEditor
-富文本编辑器,优化WGRichTextEditor,多图添加, 图片删除, 换行光标定位,字体样式 等等
+Rich text editor, optimized WGRichTextEditor, multi-image addition, image deletion, line-feed cursor positioning, font style, etc.
