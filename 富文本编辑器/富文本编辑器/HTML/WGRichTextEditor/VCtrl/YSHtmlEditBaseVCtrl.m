@@ -3,7 +3,7 @@
 //  ArTreePro
 //
 //  Created by niexiaobo on 2019/1/16.
-//  Copyright © 2019 上海翼树网络科技. All rights reserved.
+//  Copyright © 2019 . All rights reserved.
 //
 
 #import "YSHtmlEditBaseVCtrl.h"
@@ -126,6 +126,7 @@
     
 }
 
+#pragma mark- 导出html
 - (void)getHTMLText{
     
     NSLog(@"%@",[self.webView contentHtmlText]);

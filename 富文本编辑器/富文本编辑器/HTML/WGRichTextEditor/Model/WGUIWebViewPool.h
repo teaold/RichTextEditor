@@ -3,7 +3,7 @@
 //  ArTreePro
 //
 //  Created by niexiaobo on 2019/1/21.
-//  Copyright © 2019 上海翼树网络科技. All rights reserved.
+//  Copyright © 2019 . All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
