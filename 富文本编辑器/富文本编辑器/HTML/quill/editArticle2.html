@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bubble Theme - Quill</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="language" content="english">
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="description"
+          content="Quill is a free, open source WYSIWYG editor built for the modern web. With its modular architecture and expressive API, it is completely customizable to fit any need.">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@quilljs">
+
+    <meta name="twitter:title" content="Bubble Theme - Quill">
+
+    <meta name="twitter:description"
+          content="Quill is a free, open source WYSIWYG editor built for the modern web.">
+    <meta name="twitter:image" content="http://quilljs.com/assets/images/brand-asset.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://quilljs.com/standalone/bubble/">
+    <meta property="og:image" content="http://quilljs.com/assets/images/brand-asset.png">
+    <meta property="og:title" content="Bubble Theme - Quill">
+    <meta property="og:site_name" content="Quill">
+
+    <link type="application/atom+xml" rel="alternate" href="https://quilljs.com/feed.xml"
+          title="Quill - Your powerful, rich text editor"/>
+
+
+    <link rel="stylesheet" href="quill.bubble.css"/>
+
+    <style>
+  .standalone-container {
+  }
+  #bubble-container {
+    height: 100%;
+    width: 100%;
+  }
+*{outline:none;}
+    </style>
+
+
+</head>
+<body>
+
+<div class="standalone-container">
+    <div id="bubble-container" contenteditable="true"></div>
+</div>
+
+<input type="button" value="添加" id="btn"/>
+
+<script type="text/javascript" src="quill.min.js"></script>
+<script type="text/javascript">
+		
+        //window.onload = function(){
+			var bubble = document.getElementById("bubble-container");
+			var btn = document.getElementById("btn");
+			var str="";
+            var indexLoc = 2;
+			btn.onclick = function(){
+				bubble.focus();		
+				//_insertimg(indexLoc);
+			}
+
+
+
+window.onload = function(){
+            bubble.focus();
+}
+            //编辑内容
+            function Msgtest(dict)
+            {
+                var contenStr = quill.container.firstChild.innerHTML;
+                return contenStr;
+            }
+            //oc发布调用js
+            function creatArticle(message){
+                //quill.focus();
+                bubble.focus();
+                
+                //document.getElementById("bubble-container").focus();
+                method.articleContent(Msgtest('1'));
+            }
+            //插入图片
+            function insertImages(url,index){
+                quill.insertEmbed(index, "image",url, "user");
+                
+            }
+            //oc光标位置调用js
+            function quillEditLocation(message){
+                var contenStr = 0 + quill.getSelection().index;
+                method.againEditindex(contenStr);
+            }
+
+            //oc开始编辑调用js
+            function againEdit(locindex){
+                bubble.focus();
+            }
+
+            function insertImage(url){
+                quill.insertEmbed(quill.getSelection().index, "image",url, "user");
+                return url
+            }
+            function getContent(){
+                return quill.container.firstChild.innerHTML
+            }
+
+            function inertContent(content){
+                quill.clipboard.dangerouslyPasteHTML(0, content);
+            }
+
+
+			//锁定编辑器中鼠标光标位置
+			function _insertimg(indexLoc){
+				var selection= window.getSelection ? window.getSelection() : document.selection; //当前选中的内容
+				var range= selection.createRange ? selection.createRange() : selection.getRangeAt(indexLoc); //光标位置
+				if (!window.getSelection){
+					bubble.focus();
+					var selection= window.getSelection ? window.getSelection() : document.selection;
+					var range= selection.createRange ? selection.createRange() : selection.getRangeAt(0);
+					//range.pasteHTML(str); //在光标位置插入html
+					range.collapse(false);
+					range.select();
+				}else{
+				bubble.focus();
+				range.collapse(false);
+				var hasR = range.createContextualFragment("");
+				var hasR_lastChild = hasR.lastChild;
+				while (hasR_lastChild && hasR_lastChild.nodeName.toLowerCase() == "br" && hasR_lastChild.previousSibling && hasR_lastChild.previousSibling.nodeName.toLowerCase() == "br") {
+				var e = hasR_lastChild;
+				hasR_lastChild = hasR_lastChild.previousSibling;
+				hasR.removeChild(e)
+				}                       
+				range.insertNode(hasR);
+				if (hasR_lastChild) {
+					range.setEndAfter(hasR_lastChild);
+					range.setStartAfter(hasR_lastChild)
+				}
+				selection.removeAllRanges();
+				selection.addRange(range)
+				}
+			}
+		//}
+		
+		
+  var quill = new Quill('#bubble-container', {
+    placeholder: '请输入正文',
+    theme: 'bubble'
+  });
+
+  
+</script>
+</body>
+</html>
