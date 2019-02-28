@@ -41,6 +41,17 @@
     [self stringByEvaluatingJavaScriptFromString:trigger];
 }
 
+/**
+ :初始化文章
+ */
+- (void)setupHtmlContent:(NSString *)content {
+    
+    NSString *html = [content stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *trigger = [NSString stringWithFormat:@"RE.setHtmlStr(\"%@\",\"%@\");",html,[self deleteImageBase64String]];
+    
+    [self stringByEvaluatingJavaScriptFromString:trigger];
+}
+
 - (void)clearContentPlaceholder{
     [self stringByEvaluatingJavaScriptFromString:@"RE.clearBackTxt();"];
 }
@@ -224,12 +235,12 @@
     [self stringByEvaluatingJavaScriptFromString:trigger];
 }
 
-- (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl{
-    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg(\"%@\", \"%@\");",imageKey, imgUrl];
-    [self stringByEvaluatingJavaScriptFromString:trigger];
-}
-- (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl delUrl:(NSString *)delUrl {
-    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg2(\"%@\",\"%@\", \"%@\");",imageKey, imgUrl, delUrl];
+//- (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl{
+//    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg(\"%@\", \"%@\");",imageKey, imgUrl];
+//    [self stringByEvaluatingJavaScriptFromString:trigger];
+//}
+- (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl {
+    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg2(\"%@\",\"%@\", \"%@\");",imageKey, imgUrl, [self deleteImageBase64String]];
     [self stringByEvaluatingJavaScriptFromString:trigger];
 }
 
@@ -266,6 +277,15 @@
 - (void)removeBtnErrorKey:(NSString *)key isHide:(BOOL)isHide{
     NSString *trigger = [NSString stringWithFormat:@"RE.removeErrorBtn(\"%@\",\"%@\");",key,isHide?@"true":@"false"];
     [self stringByEvaluatingJavaScriptFromString:trigger];
+}
+
+/**
+ :删除按钮图
+ */
+- (NSString *)deleteImageBase64String {
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"imagedelete"],1.0f);
+    NSString *imageBase64String = [imageData base64EncodedStringWithOptions:0];
+    return imageBase64String;
 }
 
 @end

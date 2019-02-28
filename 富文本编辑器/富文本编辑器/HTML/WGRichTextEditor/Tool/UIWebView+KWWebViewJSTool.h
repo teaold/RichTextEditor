@@ -40,7 +40,10 @@
  */
 - (void)setupContent:(NSString *)content;
 
-
+/**
+ :初始化文章
+ */
+- (void)setupHtmlContent:(NSString *)content;
 /**
  *  清除内容的占位文本
  */
@@ -174,7 +177,6 @@
  */
 - (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl;
 
-- (void)inserSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl delUrl:(NSString *)delUrl;
 /**
  *  删除图片
  @param key 图片的唯一ID

@@ -638,10 +638,23 @@ font[size="4"]{
     box-sizing: border-box;
 }
 .real-img{
-    max-width: 100%;
+    width: 100%;
     padding: 0px;
     box-sizing: border-box;
 }
+
+.real-img-delete{
+    width:30px;
+    height:30px;
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+
+.real-img-f-div {
+    position:relative;
+}
+
 .main-img-case.loading .real-img{
     filter:alpha(opacity=50);
     -moz-opacity:0.5;

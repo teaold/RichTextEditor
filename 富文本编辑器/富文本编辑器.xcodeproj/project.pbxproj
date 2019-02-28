@@ -378,13 +378,13 @@
 		92359D812225361400DE2C21 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				92359D822225361400DE2C21 /* UIWebView+KWWebViewJSTool.h */,
 				92359D832225361400DE2C21 /* UIControl+KWButtonExtension.h */,
-				92359D842225361400DE2C21 /* UIWebView+KWHideAccessoryView.m */,
-				92359D852225361400DE2C21 /* UIWebView+KWWebViewJSTool.m */,
 				92359D862225361400DE2C21 /* UIControl+KWButtonExtension.m */,
-				92359D872225361400DE2C21 /* WGCommon.h */,
 				92359D882225361400DE2C21 /* UIWebView+KWHideAccessoryView.h */,
+				92359D842225361400DE2C21 /* UIWebView+KWHideAccessoryView.m */,
+				92359D822225361400DE2C21 /* UIWebView+KWWebViewJSTool.h */,
+				92359D852225361400DE2C21 /* UIWebView+KWWebViewJSTool.m */,
+				92359D872225361400DE2C21 /* WGCommon.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";

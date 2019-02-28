@@ -107,7 +107,7 @@
     self.title = @"文章编辑";
     //[self AddLeftItem:YES rightItem:NO];
     
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"HTML" style:UIBarButtonItemStylePlain target:self action:@selector(getHTMLText)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"HTML" style:UIBarButtonItemStylePlain target:self action:@selector(getHTMLText)];
     
 }
 
@@ -128,10 +128,65 @@
 
 #pragma mark- 导出html
 - (void)getHTMLText{
-    
-    NSLog(@"%@",[self.webView contentHtmlText]);
-    
+    __block NSString *htmlStr = [self.webView contentHtmlText];
+    //过滤掉无效视图
+    NSString *divReg = @"<div[^>]*>.*?</div>";
+    NSArray*divArray = [self matchString:htmlStr toRegexString:divReg];
+    if (divArray.count > 0) {
+        [divArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.length > 0 && [obj containsString:@"class=\"real-img-f-div\""]) {
+                NSString *imgReg = @"<img[^>]*>";
+                NSArray*imgArray = [self matchString:obj toRegexString:imgReg];
+                [imgArray enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj2, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (obj2.length > 0 && ![obj2 containsString:@"class=\"real-img-delete\""]) {
+                        //删除id
+                        NSString *imgIDReg = @"id=\".*?\"";
+                        NSString *imgStr = [self matchReplaceHtmlString:obj2 RegexString:imgIDReg withString:@""];
+                        htmlStr = [htmlStr stringByReplacingOccurrencesOfString:obj withString:imgStr];
+                    }
+                }];
+            }
+        }];
+    }
+    //导出结果
+    NSLog(@"%@",htmlStr);
 }
+
+#pragma mark- 正则匹配
+- (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexStr options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray * matches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    //match: 所有匹配到的字符,根据() 包含级
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (NSTextCheckingResult *match in matches) {
+        for (int i = 0; i < [match numberOfRanges]; i++) {
+            //以正则中的(),划分成不同的匹配部分
+            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
+            
+            [array addObject:component];
+        }
+    }
+    return array;
+}
+
+/**
+ :正则替换
+ */
+- (NSString *)matchReplaceHtmlString:(NSString *)string RegexString:(NSString *)regexStr  withString:(NSString *)replaceStr {
+    if (!string || string.length == 0 || regexStr.length == 0 || replaceStr.length == 0) {
+        return string;
+    }
+    
+    NSRegularExpression *regularExpretion=[NSRegularExpression regularExpressionWithPattern:regexStr
+                                                                                    options:0
+                                                                                      error:nil];
+    string=[regularExpretion stringByReplacingMatchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, string.length) withTemplate:replaceStr];
+    
+    return string;
+}
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"transform"]){
@@ -163,7 +218,9 @@
     //[webView setupTitle:@"我是标题"];
     //插入草稿内容
 //    [webView setupContent:@"<p>添加测试呢</p><br><img src=\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4278445236,4070967445&amp;fm=173&amp;app=25&amp;f=JPEG?w=218&amp;h=146&amp;s=B1145A915E28110D18B9A940030080B2\"><br><br><p>让人</p>"];
-    [webView setupContent:@"<p>添加测试呢</p><br /><img src=\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4278445236,4070967445&amp;fm=173&amp;app=25&amp;f=JPEG?w=218&amp;h=146&amp;s=B1145A915E28110D18B9A940030080B2\"><br /><br /><img src=\"http://h.hiphotos.baidu.com/image/pic/item/cefc1e178a82b901fd40c8077d8da9773912ef11.jpg\"><p>让人</p>"];
+    
+    [webView setupHtmlContent:@"<p>添加测试呢</p><br /><img src=\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4278445236,4070967445&amp;fm=173&amp;app=25&amp;f=JPEG?w=218&amp;h=146&amp;s=B1145A915E28110D18B9A940030080B2\"><br /><br /><img src=\"http://h.hiphotos.baidu.com/image/pic/item/cefc1e178a82b901fd40c8077d8da9773912ef11.jpg\"><p>让人</p>"];
+//    [webView setupContent:@"<p>添加测试呢</p><br /><img src=\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=4278445236,4070967445&amp;fm=173&amp;app=25&amp;f=JPEG?w=218&amp;h=146&amp;s=B1145A915E28110D18B9A940030080B2\"><br /><br /><img src=\"http://h.hiphotos.baidu.com/image/pic/item/cefc1e178a82b901fd40c8077d8da9773912ef11.jpg\"><p>让人</p>"];
     //删除占位信息
     [self.webView clearContentPlaceholder];
 
@@ -468,6 +525,7 @@
                 
                 //2、模拟网络请求上传图片 更新进度
                 [self.webView inserImageKey:uploadM.key progress:0.5];
+                //开始请求上传
 //                NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
 //                [YSJsonDataModel requestSendContentImgDic:dic image:uploadM.imageData Complated:^(id datas, NSString *error) {
 //                    [HUDView dismiss];
@@ -480,6 +538,7 @@
 //                        [self.webView hiddenKeyboard];
 //                        //[self.webView setupEditEnable:NO];//不可编辑状态
 //                    } else {
+//                         //上传成功
 //                        NSString *picUrl = datas;
                        NSString *picUrl = @"http://pic27.nipic.com/20130225/4746571_081826094000_2.jpg";
                         [self.webView inserImageKey:uploadM.key progress:1];

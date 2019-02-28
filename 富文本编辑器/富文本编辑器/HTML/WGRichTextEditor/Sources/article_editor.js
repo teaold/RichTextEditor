@@ -73,6 +73,18 @@ RE.setHtml = function(contents) {
         RE.insertSuccessReplaceImg($(img).attr("id"),$(img).attr("src"));
     };
 }
+//delImageData
+//包含删除按钮
+RE.setHtmlStr = function(contents,delImageData) {
+    RE.editor.innerHTML = decodeURIComponent(contents.replace(/\+/g, '%20'));
+    var imgList = $("img");
+    for (var i = imgList.length - 1; i >= 0; i--) {
+        img = imgList[i];
+        $(img).attr("id","imgId" + i);
+        RE.insertSuccessReplaceImg2($(img).attr("id"),$(img).attr("src"),delImageData);
+    };
+}
+
 RE.showBackTxt = function(){
     var target=document.getElementById("back-text");
     target.style.display="block";
@@ -581,9 +593,40 @@ RE.uploadImg = function(imgId,progress){
     $("#"+imgId+" .loading-bar").width(loadingBarWidth);
 }
 
-//图片上传成功
+//图片上传成功(不包含删除按钮)
 RE.insertSuccessReplaceImg =function(imgId,imgUrl){
     var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
+    
+    
+    $("#"+imgId).after(imgStr);
+    $("#"+imgId).remove();
+    
+    var flag = false;
+    window.addEventListener("touchmove",function(event){
+                            flag = true;
+                            setTimeout(function(){
+                                       flag = false;
+                                       }, 50);
+                            });
+    $("#"+imgId+"-img").on("touchend",function(event){
+                           if(flag==true){
+                           return;
+                           }
+                           RE.canFocus(false);
+                           RE.uploadOver(imgId);
+                           event.stopPropagation();
+                           });
+}
+
+//图片上传成功: 含有删除按钮
+RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
+    //    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
+    //real-img-delete  style="width:30px;height:30px;position:absolute;right:10px;top:10px"
+    var imgStr = '<div class="real-img-f-div" id="'+imgId+'-img" >' +
+    '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +
+    '<img id="'+imgId+'-img" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>';
+    
+    
     $("#"+imgId).after(imgStr);
     $("#"+imgId).remove();
     
@@ -621,35 +664,7 @@ RE.insertUpdateImg =function(imgId,imgUrl){
                            event.stopPropagation();
                            });
 }
-//图片上传成功
-RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delurl){
-//    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
-    
-    var imgStr = '<div style="position:relative;">' +
-    '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +
-    '<img id="'+imgId+'-img" src="' + delurl + '" style="width:30px;height:30px;position:absolute;right:10px;top:10px"/>' + '</div>';
-    
-    
-    
-    $("#"+imgId).after(imgStr);
-    $("#"+imgId).remove();
-    
-    var flag = false;
-    window.addEventListener("touchmove",function(event){
-                            flag = true;
-                            setTimeout(function(){
-                                       flag = false;
-                                       }, 50);
-                            });
-    $("#"+imgId+"-img").on("touchend",function(event){
-                           if(flag==true){
-                           return;
-                           }
-                           RE.canFocus(false);
-                           RE.uploadOver(imgId);
-                           event.stopPropagation();
-                           });
-}
+
 
 //设置编辑器是否不可编辑
 RE.canFocus = function(bool){
