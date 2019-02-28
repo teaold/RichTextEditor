@@ -551,7 +551,7 @@
                         [self.webView hiddenKeyboard];
 //                    }
 //                }];
-                
+            
         }
         
     }
@@ -638,6 +638,9 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
         return NO;
+    } else {
+        [self.webView setupEditEnable:YES];//恢复可编辑状态
+        [self.webView showKeyboardContent];
     }
     return YES;
 }
