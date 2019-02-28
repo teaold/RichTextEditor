@@ -3,7 +3,7 @@
 
 在 [ZSSRichTextEditor](https://github.com/nnhubbard/ZSSRichTextEditor)和[WGEditor](https://github.com/study123456/WGEditor-mobile)的基础上修复一些bug,并简单进行优化.
 
-####部分更新记录:
+#### 部分更新记录:
 
 修复光标失效问题:删除图片等操作导致光标失效问题
 
@@ -16,7 +16,7 @@
 
 文字编辑换行时光标位置问题
 
-####快照:
+#### 快照:
 
 <img src="images/pic1.png" width = 30% height = auto />
 
