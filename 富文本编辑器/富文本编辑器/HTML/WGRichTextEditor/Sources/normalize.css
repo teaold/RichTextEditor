@@ -477,6 +477,12 @@ th {
     top:15px;
     left:27px;
 }
+
+.back-img-text{
+    color:#999;
+    font-size: 16px;
+}
+
 #article_content table{
     max-width:100%;
     border:1px solid #e7e7e7;
