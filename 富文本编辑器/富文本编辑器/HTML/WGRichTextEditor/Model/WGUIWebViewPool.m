@@ -31,9 +31,7 @@
 }
 
 - (void)preLoadWebView {
-    if (!_webView) {
-        self.webView.hidden = NO;
-    }
+    _webView = [[UIWebView alloc] init];
 }
 
 - (UIWebView *)webView{

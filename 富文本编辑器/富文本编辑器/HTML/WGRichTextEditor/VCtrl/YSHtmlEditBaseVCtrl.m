@@ -82,7 +82,7 @@
                                                         encoding:NSUTF8StringEncoding
                                                            error:nil];
         [_webView loadHTMLString:htmlCont baseURL:baseURL];
-//        _webView.scrollView.bounces=NO;
+        _webView.scrollView.bounces=NO;
         _webView.hidesInputAccessoryView = YES;
         //_webView.detectsPhoneNumbers = NO;
     }
