@@ -30,18 +30,16 @@
     return _preWebArray;
 }
 
+- (void)preLoadWebView {
+    if (!_webView) {
+        self.webView.hidden = NO;
+    }
+}
+
 - (UIWebView *)webView{
     if (!_webView) {
         _webView = [[UIWebView alloc] init];
-        NSString *path = [[NSBundle mainBundle] bundlePath];
-        NSURL *baseURL = [NSURL fileURLWithPath:path];
-        NSString * htmlPath = [[NSBundle mainBundle] pathForResource:@"richText_editor"                                                              ofType:@"html"];
-        NSString * htmlCont = [NSString stringWithContentsOfFile:htmlPath
-                                                        encoding:NSUTF8StringEncoding
-                                                           error:nil];
-        [_webView loadHTMLString:htmlCont baseURL:baseURL];
         _webView.scrollView.bounces=NO;
-        
     }
     return _webView;
 }

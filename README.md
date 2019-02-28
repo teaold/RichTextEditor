@@ -16,6 +16,8 @@
 
 文字编辑换行时光标位置问题
 
+预加载webView(UIWebView初始化需要时间较长)
+
 #### 快照:
 
 <img src="images/pic1.png" width = 30% height = auto />

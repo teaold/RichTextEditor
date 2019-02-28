@@ -333,10 +333,10 @@
 		92359D6C2225361400DE2C21 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				92359D702225361400DE2C21 /* WGUIWebViewPool.h */,
 				92359D6D2225361400DE2C21 /* WGUIWebViewPool.m */,
 				92359D6E2225361400DE2C21 /* WGUploadPictureModel.h */,
 				92359D6F2225361400DE2C21 /* WGUploadPictureModel.m */,
-				92359D702225361400DE2C21 /* WGUIWebViewPool.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";

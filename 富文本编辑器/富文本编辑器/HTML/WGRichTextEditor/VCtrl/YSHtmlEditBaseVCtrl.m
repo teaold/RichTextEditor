@@ -73,7 +73,7 @@
 - (UIWebView *)webView{
     if (!_webView) {
         //获取已经初始化完成的webView
-        _webView = [[UIWebView alloc] init];
+        _webView = [WGUIWebViewPool sharedInstance].webView;
         _webView.delegate = self;
         NSString *path = [[NSBundle mainBundle] bundlePath];
         NSURL *baseURL = [NSURL fileURLWithPath:path];
@@ -82,10 +82,9 @@
                                                         encoding:NSUTF8StringEncoding
                                                            error:nil];
         [_webView loadHTMLString:htmlCont baseURL:baseURL];
-        _webView.scrollView.bounces=NO;
+//        _webView.scrollView.bounces=NO;
         _webView.hidesInputAccessoryView = YES;
         //_webView.detectsPhoneNumbers = NO;
-        
     }
     return _webView;
 }
