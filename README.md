@@ -16,7 +16,9 @@
 文字编辑换行时光标位置问题
 
 快照:
+
 <img src="images/pic1.png" width = 30% height = auto />
 
-![photos](images/pic2.png)
-![photos](images/pic3.png)
+<img src="images/pic2.png" width = 30% height = auto />
+
+<img src="images/pic3.png" width = 30% height = auto />
