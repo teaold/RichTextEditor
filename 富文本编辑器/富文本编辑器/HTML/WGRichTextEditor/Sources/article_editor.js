@@ -621,7 +621,7 @@ RE.insertSuccessReplaceImg =function(imgId,imgUrl){
 //图片上传成功: 含有删除按钮
 RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
     //    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
-    
+    //contenteditable="false" 禁止图片区域获取光标
     //+ '<div id="back-img-text" class="back-img-text">图片描述</div>'
     var imgStr = '<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
     '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +

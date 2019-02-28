@@ -518,8 +518,6 @@
             uploadM.key = [NSString uuid];
             uploadM.imageData = UIImageJPEGRepresentation(picM.thumbPhoto,0.8f);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
                 //1、插入本地图片
                 [self.webView inserImage:uploadM.imageData key:uploadM.key];
                 
@@ -554,7 +552,6 @@
 //                    }
 //                }];
                 
-            });
         }
         
     }
