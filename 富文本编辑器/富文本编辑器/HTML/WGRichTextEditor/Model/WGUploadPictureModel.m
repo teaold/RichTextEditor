@@ -10,4 +10,7 @@
 
 @implementation WGUploadPictureModel
 
+- (void)preLoadWebView {
+  //电放费
+}
 @end

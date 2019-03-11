@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 @interface WGUIWebViewPool : NSObject
 + (instancetype)sharedInstance;
-- (void)preLoadWebView;//渲染
-@property (nonatomic,strong) UIWebView *webView;
-@property(nonatomic,strong) NSMutableArray *preWebArray;//webView预加载
+- (void)preLoadWebView;  //渲染
+@property(nonatomic, strong) UIWebView *webView;
+@property(nonatomic, strong) NSMutableArray *preWebArray;  // webView预加载
 @end
 
