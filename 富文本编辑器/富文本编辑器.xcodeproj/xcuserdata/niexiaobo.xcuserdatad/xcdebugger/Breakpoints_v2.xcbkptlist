@@ -64,16 +64,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5bcc;&#x6587;&#x672c;&#x7f16;&#x8f91;&#x5668;/HTML/WGRichTextEditor/VCtrl/YSHtmlEditBaseVCtrl.m"
-            timestampString = "573976925.285655"
+            timestampString = "575361090.918512"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "748"
-            endingLineNumber = "748"
-            landmarkName = "-handleWithString:"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "-hyperLink"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bcc;&#x6587;&#x672c;&#x7f16;&#x8f91;&#x5668;/HTML/WGRichTextEditor/VCtrl/YSHtmlEditBaseVCtrl.m"
+            timestampString = "575361090.918941"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "480"
+            endingLineNumber = "480"
+            landmarkName = "-hyperLink"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
