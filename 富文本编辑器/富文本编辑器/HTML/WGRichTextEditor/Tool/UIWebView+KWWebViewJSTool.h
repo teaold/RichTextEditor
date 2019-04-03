@@ -59,6 +59,9 @@
  */
 - (void)setupEditEnable:(BOOL)enable;
 
+//动态更改占位符内容
+- (void)changePlaceholder:(NSString *)placeholder;
+
 //撤销
 - (void)undo;
 - (void)redo;

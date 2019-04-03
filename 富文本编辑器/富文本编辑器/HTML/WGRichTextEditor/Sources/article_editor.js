@@ -104,6 +104,10 @@ RE.clearBackTxt = function(){
     
     //    RE.removeAllP();
 }
+//动态更改占位符内容
+RE.changePlaceholder = function(content){
+    document.getElementById("back-text").innerHTML= content;
+}
 // 点击了标题
 
 // 点击了内容体

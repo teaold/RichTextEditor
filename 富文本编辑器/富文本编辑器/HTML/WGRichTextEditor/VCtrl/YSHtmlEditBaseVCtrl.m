@@ -292,6 +292,9 @@ UIAlertViewDelegate>
     //删除占位信息
     [self.webView clearContentPlaceholder];
     
+    //修改占位符
+    //[self.webView changePlaceholder:@"新的占位符"];
+    
     /*
      Callback for when text is changed, solution posted by richardortiz84
      https://github.com/nnhubbard/ZSSRichTextEditor/issues/5

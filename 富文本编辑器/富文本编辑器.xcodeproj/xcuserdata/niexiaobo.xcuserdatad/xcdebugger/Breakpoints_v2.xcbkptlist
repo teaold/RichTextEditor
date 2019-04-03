@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5bcc;&#x6587;&#x672c;&#x7f16;&#x8f91;&#x5668;/HTML/WGRichTextEditor/Sources/article_editor.js"
-            timestampString = "573017021.980996"
+            timestampString = "575953458.16698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -59,38 +59,6 @@
             endingLineNumber = "415"
             landmarkName = "HXCustomCameraController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5bcc;&#x6587;&#x672c;&#x7f16;&#x8f91;&#x5668;/HTML/WGRichTextEditor/VCtrl/YSHtmlEditBaseVCtrl.m"
-            timestampString = "575361090.918512"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "502"
-            endingLineNumber = "502"
-            landmarkName = "-hyperLink"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5bcc;&#x6587;&#x672c;&#x7f16;&#x8f91;&#x5668;/HTML/WGRichTextEditor/VCtrl/YSHtmlEditBaseVCtrl.m"
-            timestampString = "575361090.918941"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
-            landmarkName = "-hyperLink"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

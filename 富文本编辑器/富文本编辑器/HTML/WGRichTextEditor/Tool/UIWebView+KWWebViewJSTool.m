@@ -60,6 +60,15 @@
     [self stringByEvaluatingJavaScriptFromString:@"RE.showBackTxt();"];
 }
 
+//动态更改占位符内容
+- (void)changePlaceholder:(NSString *)placeholder {
+    if (placeholder && placeholder.length > 0) {
+        NSString *trigger = [NSString stringWithFormat:@"RE.changePlaceholder(\"%@\");",placeholder];
+        [self stringByEvaluatingJavaScriptFromString:trigger];
+    }
+    
+}
+
 #pragma mark - Utilities
 
 - (NSString *)removeQuotesFromHTML:(NSString *)html {

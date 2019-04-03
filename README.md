@@ -25,4 +25,6 @@
 
 <img src="images/pic2.png" width = 30% height = auto />
 
-<img src="images/pic3.png" width = 30% height = auto />
+<img src="images/pic4.png" width = 30% height = auto />
+
+<img src="images/pic5.png" width = 30% height = auto />
